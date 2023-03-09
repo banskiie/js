@@ -1,0 +1,11 @@
+0 -> false
+
+ANY other number (incl. negative numbers) -> true
+
+"" (empty string) -> false
+
+ANY other non-empty string (incl. "false") -> true
+
+(),[] & all other objects or arrays -> true
+
+null, undefined, Nan -> false
