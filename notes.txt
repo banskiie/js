@@ -20,12 +20,12 @@ e.g. !!"" -> false
 e.g. !!1 -> true
 
 || -> assign default value if condition is falsy
-e.g. const name = someInput || 'Max'
--> if someInput is falsy, name = 'Max'
+    e.g. const name = someInput || 'Max'
+    -> if someInput is falsy, name = 'Max'
 
 && -> if cond is true via AND operator
-e.g. const name = isLoggedIn && 'Max'
--> if isLoggedIn true, then name = 'Max'
+    e.g. const name = isLoggedIn && 'Max'
+    -> if isLoggedIn true, then name = 'Max'
 
 const userInput = "";
 const isValidInput = !!userInput
@@ -33,3 +33,30 @@ const isValidInput = !!userInput
 isValidInput = false
 !!userInput = false
 !userInput = true
+
+LOOPS
+
+for loop
+e.g.
+for (let i=0;i<3;i++){
+    console.log(i);
+}
+
+for-of loop -> ARRAY
+e.g.
+for (const x of array){
+    console.log(x);
+}
+
+for-in loop -> OBJECT
+e.g.
+for (const key in object){
+    console.log(key);
+    console.log(object)[key];
+}
+
+while loop
+e.g.
+while(isLoggedIn){
+    ...
+}

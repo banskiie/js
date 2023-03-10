@@ -16,6 +16,7 @@ const enteredValue = prompt('Maximum HP', '100');
 
 let chosenMaxLife = parseInt(enteredValue);
 let gameLog = [];
+let lastLoggedEntry;
 
 if (isNaN(chosenMaxLife) || chosenMaxLife <= 0) {
 	alert('Mother f**ker you\'re so stupid. You didn\'t enter a number so the default is 100.')
@@ -36,10 +37,17 @@ function writeToLog(ev, val, monsterHealth, playerHealth) {
 		finalMonsterHealth: monsterHealth,
 		finalPlayerHealth: playerHealth,
 	};
-	if (ev === LOG_EVENT_PLAYER_ATT || ev === LOG_EVENT_PLAYER_STR_ATT) {
-		logEntry.target = 'MONSTER';
-	} else if (ev === LOG_EVENT_MONSTER_ATT || ev === LOG_EVENT_PLAYER_HEAL) {
-		logEntry.target = 'PLAYER';
+	switch (ev) {
+		case LOG_EVENT_PLAYER_ATT:
+		case LOG_EVENT_PLAYER_STR_ATT:
+			logEntry.target = 'MONSTER';
+			break;
+		case LOG_EVENT_MONSTER_ATT:
+		case LOG_EVENT_PLAYER_HEAL:
+			logEntry.target = 'PLAYER';
+			break;
+		default:
+			break;
 	}
 	gameLog.push(logEntry);
 }
@@ -114,7 +122,35 @@ function healPlayerHandler() {
 }
 
 function printLogHandler() {
-	console.log(gameLog)
+	for (let i = 0; i < gameLog.length; i++) {
+		console.log(gameLog[i]);
+	}
+
+	let j = 0;
+	// LABELLED STATEMENTS
+	outer: do {
+		console.log('OUTER', j);
+		inner: for (let k = 0; k < 5; k++) {
+			if (k === 3) {
+				break outer;
+			}
+			console.log('INNER', k);
+		}
+		j++;
+	} while (j < 3);
+
+	let i = 0;
+	for (const entryLog of gameLog) {
+		if ((!lastLoggedEntry && lastLoggedEntry !== 0) || lastLoggedEntry < i) {
+			console.log(`#${i}`);
+			for (const key in entryLog) {
+				console.log(`${key} : ${entryLog[key]}`);
+			}
+			lastLoggedEntry = i;
+			break;
+		}
+		i++;
+	}
 }
 
 attackBtn.addEventListener('click', attackHandler);
