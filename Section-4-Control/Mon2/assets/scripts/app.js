@@ -22,6 +22,7 @@ if (isNaN(chosenMaxLife) || chosenMaxLife <= 0) {
 	chosenMaxLife = 100;
 }
 
+
 let hasBonusLife = true;
 let currentMonsterHealth = chosenMaxLife;
 let currentPlayerHealth = chosenMaxLife;
@@ -35,13 +36,9 @@ function writeToLog(ev, val, monsterHealth, playerHealth) {
 		finalMonsterHealth: monsterHealth,
 		finalPlayerHealth: playerHealth,
 	};
-	if (ev === LOG_EVENT_PLAYER_ATT) {
+	if (ev === LOG_EVENT_PLAYER_ATT || ev === LOG_EVENT_PLAYER_STR_ATT) {
 		logEntry.target = 'MONSTER';
-	} else if (ev === LOG_EVENT_PLAYER_STR_ATT) {
-		logEntry.target = 'MONSTER';
-	} else if (ev === LOG_EVENT_MONSTER_ATT) {
-		logEntry.target = 'PLAYER';
-	} else if (ev === LOG_EVENT_PLAYER_HEAL) {
+	} else if (ev === LOG_EVENT_MONSTER_ATT || ev === LOG_EVENT_PLAYER_HEAL) {
 		logEntry.target = 'PLAYER';
 	}
 	gameLog.push(logEntry);
@@ -54,8 +51,7 @@ function reset() {
 }
 
 function endRound() {
-	let i = true;
-	let stringOutcome;
+
 	const initialPlayerHealth = currentPlayerHealth;
 	const playerDamage = dealPlayerDamage(MONSTER_ATTACK_VALUE);
 	currentPlayerHealth -= playerDamage;
@@ -69,6 +65,7 @@ function endRound() {
 		removeBonusLife();
 	}
 
+	let stringOutcome;
 
 	if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
 		alert('You won!');
@@ -88,15 +85,8 @@ function endRound() {
 }
 
 function attackMonster(mode) {
-	let maxDamage;
-	let logEvent;
-	if (mode === MODE_ATTACK) {
-		maxDamage = ATTACK_VALUE;
-		logEvent = LOG_EVENT_PLAYER_ATT;
-	} else if (mode === MODE_STRONG_ATTACK) {
-		maxDamage = STRONG_ATTACK_VALUE;
-		logEvent = LOG_EVENT_PLAYER_STR_ATT;
-	}
+	const maxDamage = mode === MODE_ATTACK ? ATTACK_VALUE : STRONG_ATTACK_VALUE;
+	const logEvent = mode === MODE_ATTACK ? LOG_EVENT_PLAYER_ATT : LOG_EVENT_PLAYER_STR_ATT;
 	const damage = dealMonsterDamage(maxDamage);
 	currentMonsterHealth -= damage;
 	writeToLog(logEvent, damage, currentMonsterHealth, currentPlayerHealth)
@@ -112,12 +102,10 @@ function strongAttackHandler() {
 }
 
 function healPlayerHandler() {
-	let healValue;
+	let healValue =
+		currentPlayerHealth >= chosenMaxLife - HEAL_VALUE ? chosenMaxLife - currentPlayerHealth : HEAL_VALUE;
 	if (currentPlayerHealth >= chosenMaxLife - HEAL_VALUE) {
 		alert('Can\'t heal more than your max HP!')
-		healValue = chosenMaxLife - currentPlayerHealth;
-	} else {
-		healValue = HEAL_VALUE;
 	}
 	increasePlayerHealth(healValue);
 	currentPlayerHealth += healValue;

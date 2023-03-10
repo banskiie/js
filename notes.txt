@@ -9,3 +9,27 @@ ANY other non-empty string (incl. "false") -> true
 (),[] & all other objects or arrays -> true
 
 null, undefined, Nan -> false
+
+
+
+
+BOOLEAN TRICKS
+
+!! -> return real boolean value
+e.g. !!"" -> false
+e.g. !!1 -> true
+
+|| -> assign default value if condition is falsy
+e.g. const name = someInput || 'Max'
+-> if someInput is falsy, name = 'Max'
+
+&& -> if cond is true via AND operator
+e.g. const name = isLoggedIn && 'Max'
+-> if isLoggedIn true, then name = 'Max'
+
+const userInput = "";
+const isValidInput = !!userInput
+
+isValidInput = false
+!!userInput = false
+!userInput = true
