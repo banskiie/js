@@ -12,18 +12,28 @@ const LOG_EVENT_MONSTER_ATT = 'MONSTER_ATTACK';
 const LOG_EVENT_PLAYER_HEAL = 'PLAYER_HEAL';
 const LOG_EVENT_GAME_OVER = 'GAME_OVER';
 
-const enteredValue = prompt('Maximum HP', '100');
-
-let chosenMaxLife = parseInt(enteredValue);
-let gameLog = [];
-let lastLoggedEntry;
-
-if (isNaN(chosenMaxLife) || chosenMaxLife <= 0) {
-	alert('Mother f**ker you\'re so stupid. You didn\'t enter a number so the default is 100.')
-	chosenMaxLife = 100;
+function getMaxHP() {
+	const enteredValue = prompt('Maximum HP', '100');
+	const parsedValue = parseInt(enteredValue);
+	if (isNaN(parsedValue) || parsedValue <= 0) {
+		throw { message: 'Invalid user input, not a number!' };
+	}
+	return parsedValue;
 }
 
 
+let chosenMaxLife = getMaxHP();
+
+try {
+	chosenMaxLife = getMaxHP()
+} catch (err) {
+	console.log(err);
+	chosenMaxLife = 100;
+	alert('You entered something wrong, default value of 100 is used.')
+} 
+
+let gameLog = [];
+let lastLoggedEntry;
 let hasBonusLife = true;
 let currentMonsterHealth = chosenMaxLife;
 let currentPlayerHealth = chosenMaxLife;
