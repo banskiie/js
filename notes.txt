@@ -63,3 +63,6 @@ while(isLoggedIn){
 
 break; -> stops a loop
 continue; -> passes a certain part of the loop
+
+var -> Global/Function
+let & const -> Block
