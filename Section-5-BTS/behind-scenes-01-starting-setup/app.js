@@ -1,15 +1,21 @@
-var name = 'Ivan';
+// var name = 'Ivan';
 
-if (name === 'Ivan') {
-    var hobbies = ['Sports', 'Coding'];
-    console.log(hobbies)
-}
+// if (name === 'Ivan') {
+//     var hobbies = ['Sports', 'Coding'];
+//     console.log(hobbies)
+// }
 
-function greet() {
-    var age = 25;
-    // let name = 'Max';
-    console.log(name, age);
-}
+// function greet() {
+//     var age = 25;
+//     // let name = 'Max';
+//     console.log(name, age);
+// }
 
-console.log(name, hobbies);
-greet();
+// console.log(name, hobbies);
+// greet();
+
+// NEVER USER var
+
+console.log(userName);
+
+var userName = 'Max';

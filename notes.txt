@@ -66,3 +66,5 @@ continue; -> passes a certain part of the loop
 
 var -> Global/Function
 let & const -> Block
+
+'use strict'; -> enables strict mode
