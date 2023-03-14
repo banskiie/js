@@ -68,3 +68,74 @@ var -> Global/Function
 let & const -> Block
 
 'use strict'; -> enables strict mode
+
+
+////
+function greet(name) {
+    console.log(name);
+}
+
+greet('Ivan');
+
+*name is a parameter
+*'Ivan' is the argument
+////
+
+const person = {
+    name: 'Ivan',
+    greet: function greet(){
+        console.log('Hello!');
+    }
+}
+
+person.greet();
+
+methods are functions inside objects.
+
+*functions are objects too
+
+////
+
+Declaring functions as constants are better to initialize and better to read
+
+const start = function(){
+    console.log('Hi!');
+};
+
+function start() {
+    console.log('Hi!');
+}
+
+////
+ARROW FUNCTIONS - creates new tricks on creating functions
+
+const add = (a, b) => a + b;
+
+is the same as
+
+const add = function () {
+    return a + b;
+}
+
+General Syntax: (arg1,arg2) => { ... }
+
+no arguments/parameters
+() => { ... }
+empty parentheses is required 
+
+exactly 1 arg/parameter
+arg => { ... }
+parentheses can be omitted
+
+
+
+exacty 1 expression
+(a,b) => a + b
+curly braces can be ommited, result is returned, remove 'return'
+
+more than one expression in function body
+(a, b) => {
+    a *= 2;
+    return a + b;
+}
+curly braces and return is required
