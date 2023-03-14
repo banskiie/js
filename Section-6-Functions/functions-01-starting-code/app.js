@@ -160,4 +160,52 @@ startGameBtn.addEventListener('click', () => {
   const result = showResult(winner, playerChoice || DEFAULT_CHOICE, computerChoice);
   alert(result);
   currentlyPlaying = false;
-}); //Indirect execution
+}) //Indirect execution
+
+
+
+
+
+
+const combine = (resultHandler, operation, ...numbers) => { //MERGING ALL ARGUMENTS INTO AN ARRAY (REST OPERATOR)
+
+  const validateNumber = (number) => {
+    return isNaN(number) ? 0 : number;
+  };
+
+  let sum = 0;
+  for (const num of numbers) {
+    if (operation === 'ADD') {
+      sum += validateNumber(num);
+    } else {
+      sum -= validateNumber(num);
+    }
+  }
+  resultHandler(sum); // the sum argument will be pushed after the bind.this argument
+};
+
+// const subtractUp = function (resultHandler, ...numbers) {
+//   let sum = 0;
+//   for (const num of numbers) { // dont use that pre ES6
+//     sum -= num;
+//   }
+//   resultHandler(sum);
+// };
+
+const showRes = (msgText, result) => {
+  alert(msgText + result);
+}
+
+combine(showRes.bind(this,'The result after adding all numbers is: '), 'ADD', 1, 5, 10, -3, 6, 10); // bind(this,...) will push in the arguments first to the function
+combine(showRes.bind(this,'The result after subtracting all numbers is: '), 'SUBTRACT', 1, 5, 10, -3, 6, 10);
+// console.log(sumUp.validateNumber)
+
+function foo(i) {
+  if (i < 0) {
+    return;
+  }
+  console.log(`begin: ${i}`);
+  foo(i - 1);
+  console.log(`end: ${i}`);
+}
+foo(3);

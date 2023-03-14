@@ -1,0 +1,60 @@
+querySelector('#main-title'), getElementById('main-title') -> returns single elements
+different ways of querying elements(by CSS selector, by ID)
+direct reference to DOM element is returned
+
+querySelectorAll('.list-item'), getElementsByTagName('h1'), getElementsByClassName('list-item')
+-> Return collection of elements (array-like objects): NodeList
+Different way of querying elements (by CSS selector, by tag name, by CSS class)
+querySelectorAll() returns a non-live NodeList, getXByX live NodeList
+
+
+Nodes -> objects that make up the DOM
+-> HTML tags are element nodes(or just elements)
+-> Text creates 'Text nodes'
+-> Attributes create 'Attributes nodes'
+
+Elements -> are one type of nodes
+-> special properties and methods to interact with the elements
+-> available methods and properties depend on the kind of element
+-> can be selected in various different ways via just
+-> can be created and removed via js
+
+
+
+CHILD TRAVERSAL
+.children[n]
+.firstElementChild
+.lastElementChild
+-> traverse children by elements(html tags)
+
+.childNodes[n]
+.firstChild
+.lastChild
+-> traverse chidren by nodes
+
+PARENT TRAVERSAL
+.parentNode/.parentElement
+-> select the parent of any node/element
+
+ANCESTOR TRAVERSAL
+.closest(css selector)
+-> traverses any ancestor from the element
+
+DESCENDANT TRAVERSAL
+.querySelector(css selector)
+-> traverses any descendant
+
+SIBLING TRAVERSAL
+.previousElementSibling
+.nextElementSibling
+-> traverses sibling by elements(html tags)
+
+.previousSibling
+.nextSibling
+-> traverses sibling by nodes
+
+DOM TRAVERSAL vs QUERY METHODS
+DT  -> better performance
+    -> better to use if element-relationships are unlikely to change
+QM  -> better for pin pointing location
+    -> better readability

@@ -139,3 +139,34 @@ more than one expression in function body
     return a + b;
 }
 curly braces and return is required
+
+///
+REST OPERATOR
+
+const sumUp = (a, b, ...numbers) => { //MERGING ALL ARGUMENTS INTO AN ARRAY
+  let sum = 0;
+  for (const num of numbers) {
+    sum += num;
+  }
+  return sum
+};
+
+*You can add parameter in front of the rest operator to exclude them from the array
+
+before rest operators
+
+const subtractUp = function () { 
+  let sum = 0;
+  for (const num of arguments) { // dont use that pre ES6
+    sum -= num;
+  }
+  return sum
+};
+
+*if using the 'function ()' expression method using the word 'arguments' anywhere in the function yields the same array-like properties from rest operators
+
+const sum = sumUp(1, 5, 10, -3, 6, 10);
+console.log(sum);
+
+const sub = subtractUp(1, 5, 10, -3, 6, 10);
+console.log(sumb);
