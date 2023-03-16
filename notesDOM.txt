@@ -56,5 +56,50 @@ SIBLING TRAVERSAL
 DOM TRAVERSAL vs QUERY METHODS
 DT  -> better performance
     -> better to use if element-relationships are unlikely to change
+
 QM  -> better for pin pointing location
     -> better readability
+
+
+STYLING DOM Elements
+1. Via style Property
+2. Via className
+3. Via classList
+
+CREATING AND INSERTING ELEMENTS
+1.HTML String
+->innerHTML - add render HTML string
+->insertAdjacentHTML() - Add render HTML string in specific position
+
+2.createElement()
+->appendChild() / append()
+->prepend(), before(), after(), insertBefore()
+->replaceChild(), replaceWith()
+
+innerHTML   -> changes the whole inner HTML content within the tags
+            -> this refreshes and reparses the whole HTML container itself which is bad because it refreshes all its content and data (user inputs are lost)
+            ->bad performance
+insertAdjacentHTML -> cant access the element directly
+
+
+
+querySelectorAll -> static
+getElements..... -> live
+
+list.parentElement.removeChild(list); //SAFEST WAY TO SUPPORT ALL BROWSER
+
+HIGHER BROWSER SUPPORT
+
+appendChild()
+insertAdjacentElement()
+replaceChild()
+removeChild()
+
+MODERN
+
+append()
+prepend()
+before()
+after()
+replaceWith()
+remove()

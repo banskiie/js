@@ -1,0 +1,168 @@
+Iterables -> anything we can apply a for-of loop on
+e.g. NodeList, String, Map, Set
+
+Array-like Object -> objects that have a length property and use indexes to access items
+e.g. NodeList, String
+/////////////////
+Ways of creating arrays:
+
+const numbers = [1, 2, 3]; 
+-> most common Way
+
+const moreNumbers = new Array(1, 2, 3);
+const moreNumbers = Array(4)
+-> anothr less common way of creating an array but passing only ONE value with this method will yield the ARRAY LENGTH
+
+const yetMoreNumbers = Array.of(1, 2, 3);
+
+const moreNumbers = Array.from("hi!");
+['h','i','!'];
+-> takes an iterable turns it into an array
+
+//////////////////////////
+
+const hobbies = ['Sports', 'Cooking'];
+
+hobbies.push('Reading'); 
+-> adds a new element to the end of the array
+
+hobbies.unshift('Coding'); 
+-> adds a new element at the start of the array
+
+const poppedValue = hobbies.pop(); 
+-> removes the last item of the array
+-> putting it in a variable will store the removed item
+
+hobbies.shift() 
+-> removes the first element of the array
+
+hobbies[1] = 'Basketball';
+hobbies[n] = 'Dancing'; //rarely used
+-> can be used to replace an item in the array or add an item to the specific index
+////////////////////////
+hobbies.splice(indexNumberToStart, numberOfValuesToDelete, Item1, Item2, ...);
+-> can delete and insert data to specific index in the array
+-> initializing a variable will store the removed items
+-> using a negative index value will start searching from the end of the array
+
+///////////////////////////
+const testResults = [1, 5.3, 2, 4, -10, 3.78];
+const storedResults = testResults.slice();
+const rangedResults = testResult.slice(0, 2);
+const reversedResults = testResult.slice(-3, -1);
+const middleResults = testResult.slice(3); // (start, end)
+testResults.push(100);
+
+testResults -> [1, 5.3, 2, 4, -10, 3.78, 100]
+storedResults -> [1, 5.3, 2, 4, -10, 3.78]
+rangedResults -> [1, 5.3]
+reversedResults -> [4, -10]
+middleResults -> [4, -10, 3.78]
+
+-> this will yield a BRAND NEW array and not copy the address from the reference value.
+//////////////////////////////
+const newResults = [2, 4, 5];
+const newestResults = [20, 40];
+const concatResults = testResults.concat(newResults. newestResults);
+
+concatResults -> [1, 5.3, 2, 4, -10, 3.78, 2, 4, 5]
+
+-> concat will add array(s) to the specified array
+//////////////////
+FINDING THE INDEX FOR PRIMITIVE VALUES
+
+console.log(testResults.indexOf(1, n)); -> searches the index left to right
+console.log(testResults.lastIndexOf(1, n)); -> searches the index from right to left
+n is count number
+it will return -1 if it doesnt match any value
+
+FINDING THE ACTUAL VALUE AND INDEX OF REFERENCE VALUES
+const personData = [{ name: 'Cris' }, { name: 'Hiroshi' }];
+
+const cris = personData.find((arrayItem, index, array) => {
+    return arrayItem.name === 'Cris';
+});
+-> { name: 'Cris' }
+-> returns the actual object it is looking for
+
+const hiroshiIndex = personData.findIndex((arrayItem, index, array) => {
+    return arrayItem.name === 'Hiroshi';
+});
+-> 1
+-> returns the index of the item
+
+////////////
+const doesIt = testResults.includes(10.99);
+-> returns a boolean
+-> it checks if the item is included in the array
+-> works with primitive values
+///////////
+const prices = [10.99, 5.99, 3.99, 6.59];
+const tax = 0.19;
+const taxAdjustedPrices = [];
+
+prices.forEach((price, idx, prices) => {
+    const priceObj = { index: idx, taxAdjPrice: price * (1 + tax) }
+    taxAdjustedPrices.push(priceObj);
+});
+-> alternative for loops which loops through an array and provides the necessary values
+/////////////
+const taxAdjustedPrices = prices.map((price, idx, prices) => {
+    const priceObj = { index: idx, taxAdjPrice: price * (1 + tax) }
+    return priceObj;
+});
+-> map() function returns an immediate array that requires an anonymous function that MUST return a value to push into an array
+-> more sophisticated array
+function transformToObjects(numberArray) {
+    const newArray = numberArray.map((num, idx, numArray)=>{
+        const numObject = {val: num};
+        return numObject;
+    });
+    return newArray;
+}
+-> another example
+-> it can create new arrays which can also hold objects
+///////////
+const sortedPrices = prices.sort((a, b) => {
+    if (a > b) {
+        return 1;
+    } else if (a === b) {
+        return 0;
+    } else {
+        return -1;
+    }
+}); //lowest to highest
+-> sort() requires a function that take 2 values to compare
+const reversedSortedPrices = sortedPrices.reverse();
+-> reverse() does not take any function but just reverses any array order
+/////////
+const filteredArray = prices.filter((price, idx, prices) => {
+    return price > 6;
+});
+const filteredArrayAlt = prices.filter(price => price > 6);
+-> filter() returns an array that meets the expression within the array
+-> filters out based on the argument within the array
+
+//////////
+
+const sum = prices.reduce((prevVal, curVal, curIndex, prices) => {
+    return prevVal + curVal;
+}, n);
+-> reduce() will take an array an executes a function to simplify it into a single value
+-> n is an optional initial value
+
+
+////// strings
+
+const data = 'newyork;10.99;2000';
+const transformedData = data.split(';', 3)
+-> ['newyork', '10.99', '2000']
+-> split() splits a string and turns it into an array
+-> first value of the function indicates the splitter
+-> second value is the length of the new array
+
+const nameFragments = ['Shand', 'Ivan', 'Pabia', 'Sinohon'];
+const myFullName = nameFragments.join(' ');
+-> 'Shand Ivan Pabia Sinohon'
+-> join() will join all the data within the array into a string with the separator indicated in the join()
+-> converts everything into a string
