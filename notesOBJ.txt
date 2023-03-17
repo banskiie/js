@@ -1,0 +1,55 @@
+OBJECTS -> reflect "real-world" entities (allow us to appl real-world logic)
+        -> made up of properties(variables) and methods(functions)
+        -> Arrays
+        -> DOM Nodes
+        {...} -> object literal
+
+
+const person = {
+    name: "Ivan",
+    age: 25,
+    hobbies: ['Coding', 'Sports'],
+    greet: () => {
+        alert('Hi there');
+    }
+};
+
+person.isAdmin = true; 
+-> simply adds a new propery/method to an object
+
+person.age = 26;
+-> this will overwrite the value of the key specified
+
+delete person.age;
+person.age = undefined;
+->'delete' will simply delete the specified key-value within the object
+-> setting it undefined is the same as delete
+
+delete -> will remove the property
+undefined -> sets a variable to undefined
+null -> resets a variable
+
+/////////////////////////
+const person = {
+    'first-name': "Ivan",
+    age: 25,
+    1.5: 'hello';
+};
+person['first name'];
+person[1.5];
+-> this is used to access the key value
+
+*the order of properties are based on chronological insertion
+*unless all keys within the object are numbers
+
+const keyName = 'first-name';
+console.log(person[keyName]);
+-> can be dynamically accessed with outside variables
+////////////
+const userChosenKeyName = 'level';
+const person = {
+    'first-name': "Ivan",
+    age: 25,
+    [userChosenKeyName]: '...',
+};
+-> square brackets are need to dynamically assign keys which are defined by variables outside the object
