@@ -166,3 +166,45 @@ const myFullName = nameFragments.join(' ');
 -> 'Shand Ivan Pabia Sinohon'
 -> join() will join all the data within the array into a string with the separator indicated in the join()
 -> converts everything into a string
+
+
+////// spread operator
+
+const copiedNameFragments = [...nameFragments];
+-> copies the exact contents of another array and creates a brand new array
+
+const prices = [10.99, 5.99, 3.99, 6.59];
+const minValue = Math.min(...prices);
+-> -3.99
+-> the (...) spread operator creates spreads out all the values of a given array
+
+const persons = [{ name: 'Ivan', age: 24 }, { name: 'Jemuel', age: 22 }];
+const copiedPersons = [...persons.map(person => ({name: person.name, age: person.age}))];
+-> copy object values rather than reference points
+-> which in turn changing values within objects aren't changed when another array with the same object is made
+persons.push({ name: 'Cris', age: 23 });
+persons[0].age = 19;
+console.log(persons);
+console.log(copiedPersons);
+
+//// ARRAY DESTRUCTURING
+
+const nameFragments = ['Shand', 'Ivan', 'Sinohon', 24, ['Coding', 'Gaming']];
+const [firstName, middleName, lastName, ...otherInformation] = nameFragments;
+-> assigning an array at the right side of the expression will yield new variables to the designated array values on the left respectively
+-> spread operator will take all the remaining array values into a new array
+
+
+//// MAPS VS SETS VS ARRAYS
+ARARYS  -> Storing nested data of any kind and length
+        -> Iterable, also many special array methods available
+        -> Order is guaranteed, duplicates are allowed, zero-based index to access elements
+
+SETS    -> storing nested data of any kind and length
+        -> iterable, also some special methods available
+        -> order is NOT guaranteed, duplicates are NOT allowed, no index-bases access
+        -> good for unique ids
+
+MAPS    -> store key-value data of any kind and length, any key values are allowed
+        -> iterable, also some special map methods available
+        ->order is guaranteed, duplicate keys are NOT allowed, key-based access

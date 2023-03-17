@@ -111,24 +111,37 @@
 
 // console.log(sum);
 
-const data = 'newyork;10.99;2000';
+// const data = 'newyork;10.99;2000';
 
-const transformedData = data.split(';', 2)
-for (let i = 0; i < transformedData.length; i++) {
-  if (isNaN(+transformedData[i])) {
-    continue;
-  }
-  else {
-    transformedData[i] = +transformedData[i];
-  }
-}
+// const transformedData = data.split(';', 2)
+// for (let i = 0; i < transformedData.length; i++) {
+//   if (isNaN(+transformedData[i])) {
+//     continue;
+//   }
+//   else {
+//     transformedData[i] = +transformedData[i];
+//   }
+// }
 
-console.log(transformedData);
+// console.log(transformedData);
 
-const nameFragments = ['Shand', 'Ivan', 'Pabia', 'Sinohon'];
-const myFullName = nameFragments.join(' ');
-// console.log(myFullName);
+// const nameFragments = ['Shand', 'Ivan', 'Pabia', 'Sinohon'];
+// const myFullName = nameFragments.join(' ');
+// // console.log(myFullName);
 
-const copiedNameFragments = [...nameFragments];
+// const copiedNameFragments = ['Jemuel', ...nameFragments];
 
-console.log(copiedNameFragments)
+// // console.log(Math.min(...prices))
+
+// console.log(copiedNameFragments)
+
+// const persons = [{ name: 'Ivan', age: 24 }, { name: 'Jemuel', age: 22 }];
+// const copiedPersons = [...persons.map(person => ({name: person.name, age: person.age}))];
+// persons.push({ name: 'Cris', age: 23 });
+// persons[0].age = 19;
+// console.log(persons);
+// console.log(copiedPersons);
+
+// const nameFragments = ['Shand', 'Ivan', 'Sinohon', 24, ['Coding', 'Gaming']];
+// const [firstName, middleName, lastName, ...otherInformation] = nameFragments;
+// console.log(firstName);

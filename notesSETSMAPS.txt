@@ -1,0 +1,97 @@
+SETS    -> can only take in any iterable or array-like object
+        -> duplicates are not allowed and are unique
+        -> no index
+        -> helps with unique data
+        -> useful especially for applications that requires unique ids
+    
+const ids = new Set([1, 2, 3]);
+console.log(ids)
+-> Set(3) {1,2,3}
+
+console.log(ids.has(2));
+-> this is useful when using with the has() method because it will return a boolean to check if the entered value exists within the set
+
+-> cant add new elements if it has the same value
+
+for (const entry of ids.entries()) {
+    console.log(entry); // change to entry[0] to show each item of a set
+}
+-> [1,1] [2,2] [3,3]
+-> return an array of each value twice
+-> entries() will return an array of the same value twice FOR SETS
+
+ids.add(4);
+-> add a new item to a set
+
+if (ids.has(1)){
+    ids.delete(3);
+}
+-> deletes a particular value in the set
+
+
+///////////////
+MAPS    -> store key-value data with any key and length
+        -> can store any data type for its key
+        -> uses the key to locate any data
+        -> can be used to add more data to objects which are supplementary data (can be any data type) but not part of the object
+        -> suggested to use objects as keys to get access to the value for extra informations
+
+
+
+const person1 = { name: 'Ivan' };
+const person2 = { name: 'Patricia' };
+
+const personData = new Map([[person1, [{ date: 'yesterday', price: 10 }]], [person2, [{ job: "branch cashier", salary: 12000 }]]]);
+
+console.log(personData)
+-> Map(2) {{...} => Array(1), {...} => Array(1)};
+-> will return the key-value pairs from the map
+
+personData.set('hello', [{greeting: 'hi', skyColor: 'blue}]);
+-> set() will add data to the map by using any data type for the key and value
+
+console.log(personData.get(person1));
+-> get(key) will get the key-value data from the map
+
+for (const [key, value] of personData.entries()){
+    console.log(key, value);
+}
+-> will return the key-value pair for every item in the loop
+-> entries() will return an array of the key-value per item
+
+for (const key of personData.keys()) {
+    console.log(key);
+}
+for (const value of personData.values()) {
+    console.log(value);
+}
+-> keys() or value() will only take the each key or value respectively from the map
+
+
+////// MAPS VS objects
+MAPS    -> can use any value and type as keys
+        -> better performance for large quantities of data
+        -> better performance when adding/removing data frequently
+
+OBJECTS -> can only use strings, numbers or symbols as keys
+        -> perfect for small-medium size quantities of data
+        -> easier/quicker to create(which yields better performance)
+
+///// WEAKSET
+
+let person = {name: 'Max'};
+const persons = new WeakSet();
+
+-> can only use add(), delete() and has()
+-> good for performance and memory
+-> store objects in a set that will eventually be released and data will be garbage collected
+
+
+///// WEAKMAP
+const personData = new WeakMap();
+personData.get(person, 'Extra Info!');
+
+-> can only use delete(), get(), has() and set()
+
+-> releasing the variable will trigger garbage collection and clears memory from also the WeakSet and WeakMap
+-> manage memory for larger applications
