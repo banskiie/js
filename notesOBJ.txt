@@ -20,14 +20,9 @@ person.isAdmin = true;
 person.age = 26;
 -> this will overwrite the value of the key specified
 
-delete person.age;
-person.age = undefined;
-->'delete' will simply delete the specified key-value within the object
--> setting it undefined is the same as delete
-
-delete -> will remove the property
-undefined -> sets a variable to undefined
-null -> resets a variable
+person.isAdmin = null; -> sets the value to null or resets the variable
+person.isAdmin = undefined; -> sets the value to undefined
+delete person.isAdmin; -> deletes the actual property
 
 /////////////////////////
 const person = {
@@ -46,10 +41,10 @@ const keyName = 'first-name';
 console.log(person[keyName]);
 -> can be dynamically accessed with outside variables
 ////////////
-const userChosenKeyName = 'level';
+const keyName = 'level';
 const person = {
     'first-name': "Ivan",
     age: 25,
-    [userChosenKeyName]: '...',
+    [keyName]: '...',
 };
 -> square brackets are need to dynamically assign keys which are defined by variables outside the object
