@@ -48,3 +48,113 @@ const person = {
     [keyName]: '...',
 };
 -> square brackets are need to dynamically assign keys which are defined by variables outside the object
+
+const person1 = {
+    name: 'Ivan',
+    hobbies: ['Coding','Eating']
+    age: 25
+}
+
+const person2 = { ...person1 }
+-> this will copy all the values and creates another object of all value, excluding other objects and arrays which are reference values that hold the same address
+
+const person3 = { ...person1, age: 35, hobbies: [...person1.hobbies]}
+-> adding the same values will overwrite the spread operator's keys, this is to replace values.
+
+const person2 = Object.assign({}, person);
+->another way of transfering object  key-values to another variable
+
+////OBJECT DESTRUCTURING
+
+const person = {name: 'Ivan', age: 25, weight: 95, race: 'Filipino'};
+const { name, ...otherInfo } = person
+-> turns a selected key into a variable
+console.log(name);
+'Ivan'
+console.log(otherInfo);
+{age: 25, weight: 95, race: 'Filipino'}
+const { name: firstName } = person;
+-> it is possible for the key to be renamed to another variable by using :
+
+if ('age' in person){
+    ...
+}
+if (person.age === undefined){
+    ...
+}
+-> validation if the property exists
+
+////////// this
+*You can't use 'this' for arrow functions
+const person = {
+    name: 'Ivan', 
+    age: 25, 
+    weight: 95, 
+    race: 'Filipino',
+    greeting: function() {
+    return this.name.toUpperCase();
+    localGreeting() {
+        return 'Salamat po';
+    }
+}};
+-> two ways of creating functions within an object
+
+console.log(person.greeting())
+'IVAN'
+-> 'this' will point the same object
+-> adding methods will add logic within each object
+-> it has strange behavior because it looks at a scoping scale, which can be fixed by using the bind(), call() and apply();
+
+let { formattedTitle } = movie; -> 'let' to modify the value
+formattedTitle = formattedTitle.bind(movie); -> this will point towards the object being specified
+let text = formattedTitle() + ' - ';
+
+let text = formattedTitle.call(movie) + ' - ';
+-> this is another way of executing a method and adding a certain variable
+
+
+bind()  -> prepares a function with variable(s)
+        -> allows to pass infinite values
+        -> e.g. greeting.bind(name, age, language)
+call() -> executes the function with the variable(s)
+        -> allows to pass infinite values
+        -> e.g. greeting.call(name, age, language)
+apply() -> executes the function with the variable(s)
+        -> only allows two values of one variable + arrays
+        -> e.g greeting.apply(name, [age, language])
+
+*The browser binds "this" for you (on event listeners) to the DOM element that triggered the event when a regular anonymouse function is used
+function () {
+    ...
+}
+
+/// INTERACTION OF 'this' AND ARROW functions
+Arrow functions will read 'this' on outside the function because they dont know 'this' and will behave outside the arrow function
+'this' will behave in global scope when it cant find anything to bind to
+use a normal function to cancel such intended behavior
+arrow functions shine when being nested and used inside anonymous function as a method in an object. 'this' will skip towards the object when arrow functions are used
+
+//// SET AND GET
+
+const newMovie = {
+    info: {
+      set title(val) {          ->used as a setting value
+        if (val.trim() === '') {
+          this.title = 'DEFAULT';
+          return;
+        }
+        this.title = val;  -> it is not read as a function but as a variable
+      },           -> is used as validation method for keys being passed
+      get title() {
+        this.title;
+      },            -> used to show and get
+      [extraName]: extraValue
+    },
+    id: Math.random().toString(),
+    formattedTitle() {
+      return this.info.title.toUpperCase();
+    }
+  };
+
+  newMovie.info.title = 'Ivan'; -> this will be used to set the key value
+  console.log(newMovie.info.title); -> used to get a value from the key
