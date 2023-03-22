@@ -92,8 +92,6 @@ class ProductList {
 }
 
 class Shop {
-
-
   render() {
     const renderHook = document.getElementById('app');
 
