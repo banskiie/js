@@ -1,0 +1,25 @@
+Object-Oriented Programming -> Work with real-life entities in your code.
+
+Objects
+-> "The things you work within code"
+-> Instances of classes (=based on classes)
+-> class-based creation is an alternative to using object literals
+
+classes
+-> "Blueprints for objects" (theoretical definition)
+-> Define how object look like, which properties and methods they have
+-> Classes make creation of multiple,similar objects much easier
+
+class Product {
+  category = 'DEFAULT'; -> FIELD
+  constructor(title) {
+    this.title = title; -> PROPERTY
+  }
+  printInfo() { -> METHOD
+    console.log(this.title, this.category)   
+  }
+}
+
+Fields are defined outside the constructor, are rarely used when there are properties
+Properties are inside the constructor
+both can be used for methods wihtin the class
